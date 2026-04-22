@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSBC Alumni Mailing List</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f0f2f5; }
+        .form-container { max-width: 500px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: auto; }
+        h2 { color: #003366; margin-top: 0; text-align: center; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        input { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        input:focus { border-color: #003366; outline: none; box-shadow: 0 0 5px rgba(0,51,102,0.2); }
+        button { width: 100%; background-color: #003366; color: white; padding: 14px; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-bottom: 15px; }
+        button:hover { background-color: #001a33; }
+        .footer-note { font-size: 11px; color: #666; text-align: center; line-height: 1.4; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>SSBC Alumni Mailing List</h2>
+    <p style="text-align: center; color: #555;">Enter your details to stay connected with the club.</p>
+
+    <form id="alumniForm">
+        <label>Full Name</label>
+        <input type="text" id="name" required>
+
+        <label>Year of Matriculation</label>
+        <input type="number" id="year" placeholder="e.g. 2015" required>
+
+        <label>Course / Subject</label>
+        <input type="text" id="course" required>
+
+        <label>Personal Email Address</label>
+        <input type="email" id="email" required>
+
+        <button type="submit">Send to Development Office</button>
+    </form>
+    
+    <p class="footer-note">
+        By clicking submit, you are consenting to send your details via email to the Sidney Sussex Development Office for the purpose of joining the SSBC alumni mailing list. Your data will be handled in accordance with the College’s privacy policy.
+    </p>
+</div>
+
+<script>
+    document.getElementById('alumniForm').onsubmit = function(e) {
+        e.preventDefault();
+
+        const recipient = "development@sid.cam.ac.uk"; 
+        const subject = "SSBC alumni mailing list";
+
+        const name = document.getElementById('name').value;
+        const year = document.getElementById('year').value;
+        const course = document.getElementById('course').value;
+        const email = document.getElementById('email').value;
+
+        // Structured email body
+        const body = `Hi,%0D%0A%0D%0AI am an alumnus and part of SSBC. Here are my details to join the mailing list:%0D%0A%0D%0A` +
+                     `Full Name: ${name}%0D%0A` +
+                     `Year of Matriculation: ${year}%0D%0A` +
+                     `Course/Subject: ${course}%0D%0A` +
+                     `Personal Email: ${email}%0D%0A%0D%0A` +
+                     `Thanks,%0D%0A` + 
+                     `${name}`;
+
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    };
+</script>
+
+</body>
+</html>
